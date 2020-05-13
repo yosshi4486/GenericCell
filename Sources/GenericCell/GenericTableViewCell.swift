@@ -8,12 +8,13 @@
 
 #if canImport(UIKit)
 import UIKit
+
 /// A GenericTableViewCell object is a generic type of UITableViewCell that previews a custom view you give.
 ///
 /// Use like a bellows:
 ///     tableView.register<GenericTableViewCell<YourCustomView>.self, forCellReuseIdentifier: "Cell")
 ///     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! GenericTableViewCell<YourCustomView>
-public class GenericTableViewCell<View : UIView>: UITableViewCell {
+@dynamicMemberLookup public class GenericTableViewCell<View : UIView>: UITableViewCell {
     
     /// The custom view that the type is given from generic-type.
     public let customView: View = .init(frame: .zero)
@@ -28,6 +29,16 @@ public class GenericTableViewCell<View : UIView>: UITableViewCell {
         super.init(coder: coder)
         
         commonInit()
+    }
+    
+    subscript<U>(dynamicMember keyPath: ReferenceWritableKeyPath<View, U>) -> U {
+        get {
+            customView[keyPath:keyPath]
+        }
+        
+        set {
+            customView[keyPath:keyPath] = newValue
+        }
     }
     
     private func commonInit() {
