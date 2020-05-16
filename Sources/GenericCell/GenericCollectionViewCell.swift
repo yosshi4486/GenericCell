@@ -1,26 +1,26 @@
 //
-//  GenericTableViewCell.swift
+//  GenericCollectionViewCell.swift
 //  GenericCell
 //
-//  Created by yosshi4486 on 2020/05/11
+//  Created by yosshi4486 on 2020/05/16
 //  
 //
 
 #if canImport(UIKit)
 import UIKit
 
-/// A GenericTableViewCell object is a generic type of UITableViewCell that previews a custom view you give.
+/// A GenericCollectionViewCell object is a generic type of UICollectionViewCell that previews a custom view you give.
 ///
 /// Use like a bellows:
-///     tableView.register<GenericTableViewCell<YourCustomView>.self, forCellReuseIdentifier: "Cell")
-///     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! GenericTableViewCell<YourCustomView>
-@dynamicMemberLookup public class GenericTableViewCell<View : UIView>: UITableViewCell {
+///     collectionView.register<GenericCollectionViewCell<YourCustomView>.self, forCellReuseIdentifier: "Cell")
+///     let cell = collectionView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! GenericCollectionViewCell<YourCustomView>
+@dynamicMemberLookup public class GenericCollectionViewCell<View : UIView>: UICollectionViewCell {
     
     /// The custom view that the type is given from generic-type.
     public let customView: View = .init(frame: .zero)
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         
         commonInit()
     }
@@ -55,5 +55,3 @@ import UIKit
 }
 
 #endif
-
-
