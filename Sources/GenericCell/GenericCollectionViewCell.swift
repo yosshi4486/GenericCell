@@ -43,13 +43,13 @@ import UIKit
     }
     
     private func commonInit() {
-        addSubview(customView)
+        contentView.addSubview(customView)
         
         customView.translatesAutoresizingMaskIntoConstraints = false
-        customView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        customView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        customView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        customView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        customView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        customView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        customView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        customView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
 
 }
